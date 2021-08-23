@@ -1,0 +1,21 @@
+pipeline {
+ environment {
+ registry = "divyanew/sample"
+ registryCredential = "docker"
+ }
+ agent any
+ stages {
+ stage('Cloning Git') {
+ steps {
+ git 'https://github.com/divyait7789/repo2.git'
+ }
+ }
+ stage('Building image') {
+ steps{
+ script {
+ docker.image("divyanew/sample:1.0").pull()
+ }
+ }
+ }
+ }
+}
